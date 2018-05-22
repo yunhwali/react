@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <title>React</title>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<h1>React</h1>
+<p>Open the console</p>
+<script type="text/babel">
+
+
+//고차함수 (High Order Function) :
+//다른 함수를 조작할 수 있는 함수
+
+//1. 다른 함수를 인자로 받는 함수 
+//ex. Array.map / Array.filter / Array.reduce
+
+const invokeIf = (condition, fnTrue, fnFalse) => (condition) ? fnTrue() : fnFalse()
+
+const showWelcome = () => console.log("Welcome!")
+
+const showUnauthorized = () => console.log("Unauthorized")
+
+invokeIf(true, showWelcome, showUnauthorized)
+invokeIf(false, showWelcome, showUnauthorized)
+
+
+</script>
+</body>
+</html>

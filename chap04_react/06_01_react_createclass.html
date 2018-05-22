@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>react-component</title>
+</head>
+
+<body>
+    <div id="react-container"></div>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script>
+    //컴포넌트
+    //컴포넌트를 사용하면 서로다른 데이터 집합에 같은 dom구조를 재사용할 수 있다.
+
+    //컴포넌트를 만드는 세가지 방법
+    //1.createClass
+    //향후 deprecated	될 예정 - 많이 사용하지 않는다.
+
+    const ingredientsList = React.createClass({
+        displayName: "IngredientsList",
+        render() {
+            return React.createElement("ul", { "className": "ingredients" },
+                this.props.items.map((ingredient, i) =>
+                    React.createElement("li", { key: i }, ingredient)
+                )
+            )
+        }
+    })
+
+    const items = [
+        "연어 500그램",
+        "잣 1 컵",
+        "버터 상추 2 컵",
+        "옐로 스쿼시(Yellow Squash, 호박의 한 종류) 1개",
+        "올리브 오일 1/2 컵",
+        "마늘 3 쪽"
+    ]
+
+
+    ReactDOM.render(
+    	React.createElement(IngredientsList,{items},null), document.getElementById('react-container')
+    )
+
+    </script>
+</body>
+
+</html>

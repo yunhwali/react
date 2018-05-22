@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>data-element</title>
+</head>
+<body>
+
+  <div id="react-container"></div>
+
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  
+  <script>
+  
+      //리액트 사용의 가장 큰 장점은 ui엘리먼트와 데이터를 분리할 수 있다는 것이다.
+      //리액트는 단순한 자바스크립트 이기 때문에 리액트 컴포넌트 트리를 더 편하게 구성하기 위한 로직을 얼마든지 추가 가능하다.
+
+      var items = [
+        "salmon 500g",
+        "1 cup of pine nuts",
+        "2 cups of butter lettuce",
+        "a yellow squash",
+        "1/2 cup of olive oil",
+        "3 cloves of garlic"
+      ]
+
+      const ingredients = React.createElement (
+        "ul", 
+        { className: "ingredients" }, 
+        items.map(
+          (ingredient,i) => React.createElement("li", { key : i }, ingredient)
+        )
+      )
+      
+      ReactDOM.render(ingredients, document.getElementById('react-container'))
+
+  
+  </script>
+
+</body>
+</html>

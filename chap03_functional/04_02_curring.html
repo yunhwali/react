@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8">
+    <title>Literal Enhancements</title>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+</head>
+<body>
+<h1>React</h1>
+<p>Open the console</p>
+<script type="text/babel">
+
+
+    //2.
+    //커링(currying) :
+    //어떤 연산을 수행할 때 필요한 값 중 일부를 저장하고 나중에 나머지 값을 전달받는 기법
+
+    const userLogs = userName => message => console.log(`${userName} -> ${message}`)
+
+    const log = userLogs("granpa123")
+
+    log("attempted to load 20 fake members")
+
+    const getFakeMembers = count => new Promise((resolves, rejects) => {
+          const api = `https://api.randomuser.me/?nat=US&results=${count}`
+          const request = new XMLHttpRequest()
+          request.open('GET', api)
+          request.onload = () =>
+               (request.status === 200) ?
+                resolves(JSON.parse(request.response).results) :
+                reject(Error(request.statusText))
+          request.onerror = (err) => rejects(err)
+          request.send()
+        })
+
+    getFakeMembers(20).then(
+        members => log(`succesfully loaded ${members.length} memebers`),
+        error => log(`encountered an error loading members`)
+    )
+
+    //3.
+    //재귀 (recursive)
+    const countdown = (value, fn) => {
+        fn(value)
+        return (value > 0) ? countdown(value-1, fn) : value
+    }
+
+    countdown(10, value => console.log(value))
+
+
+    const dan = {
+        type : 'person',
+        data : {
+            gender : 'male',
+            info : {
+                id : 22,
+                fullname : {
+                    first : 'Dan',
+                    last : 'Deacon'
+                }
+            }
+        }
+    }
+
+    const deepPick = (fields, object = {}) => {
+        const [first, ...remaining] = fields.split(".")
+        return (remaining.length) ? deepPick(remaining.join("."), object[first]) : object[first]
+    }
+
+    console.log(deepPick("type", dan))
+    console.log(deepPick("data.info.fullname.first", dan))
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>순수 리액트 예제</title>
+</head>
+<body>
+	<!-- 
+
+	virtualDom
+
+	dom api 는 브라우저의 dom을 변경하기 위해 자바스크립트가 사용할 수 있는 객체의 모음이다. (document.getElement / document.appendChild)
+	화면에 표시된 dom 엘리먼트를 자바스크립트로 갱신하거나 변경하는 것은 쉽다. 하지만 새 엘리먼트를 추가하려면 시간이 오래 걸린다.
+	코딩관점에서 볼 때는 틀정엘리먼트의 모든 자식을 삭제하고 새 자식을 생성해넣는 일이 갱신보다 더 쉽고 깔끔하다.
+	리액트는 브라우저 dom을 갱신하기 위해 만든 라이브러리다.
+	가상 dom은 리액트 엘리먼트로 이루어진다. 리액트 엘리먼트는 개념상 html엘리먼트와 비슷하지만 실제로는 javascript 객체이다.
+	우리가 가상 dom을 변경하면 리액트는 dom api를 사용해 변경사항을 가장 효율적으로 렌더링 해준다.
+
+	-->
+
+  <!-- 타겟 컨테이너 -->
+  <div id="react-container"></div>
+
+  <!--React와 ReactDOM 라이브러리React Library & React DOM-->
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  
+  <script>
+  	
+    //React Element
+    //<h1>Baked Salmon</h1>
+  	React.createElement("h1", null, "Baked Salmon")
+
+    //<h1 id='recipe-0' data-type='title' >Baked Salmon</h1>
+    React.createElement("h1", {id:"recipe-0", 'data-type': "title"}, "Baked Salmon")
+
+
+    //title엘리먼트를 로그에 출력한 결과
+    //리액트 엘리먼트의 구
+    /*
+    {
+      $$typeof : Symbol(React,element),
+      "type" : "h1",
+      "key" : null,
+      "ref" : null,
+      "props" : {"children" : "Baked Salmon"},
+      "_owner" : null,
+      "_store" : {}
+    }
+    */
+
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>children</title>
+</head>
+
+<body>
+    <div id="react-container"></div>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script>
+    //Component Tree
+
+    //reactDom에선 항상 한개의 엘리먼트만 dom으로 렌더링 가능하다.
+    //리액트는 렌더링할 엘리먼트에 data-reactroot라는 꼬리표를 단다.
+
+    //react는 props.children을 사용해 자식 엘리먼트를 렌더링한다.
+    //텍스트가 아닌 다른 리액트 엘리먼트를 자식으로 렌더링 할 수도 있고, 그렇게 하면 엘리먼트의 트리가 된다.
+    //그래서 컴포넌트 트리 라는 말을 사용한다.
+    //트리에는 루트 컴포넌트가 하나 존재하고, 루트 아래로 많은 가지가 자란다.
+
+    //createElement의 4번째 이후에 추가된 인자는 다른 자식 엘리먼트로 취급된다.
+    //리액트는 이런 자식엘리먼트의 배열을 만들고 props.children의 값을 그 배열에 설정한다.
+    /*
+    React.createElement(
+      "ul",
+      null,
+      React.createElement("li", null, "연어 500그램"), 
+      React.createElement("li", null, "잣 1컵"),
+      React.createElement("li", null, "버터 상추 2컵"),
+      React.createElement("li", null, "옐로 스쿼시 1개")
+      React.createElement("li", null, "올리브오일 1/2컵")
+    )
+    */
+    var dish = React.createElement("section", { id: "baked-salmon" },
+        React.createElement("h1", null, "구운 연어"),
+        React.createElement("ul", { "className": "ingredients" },
+            React.createElement("li", null, "연어 500그램"),
+            React.createElement("li", null, "잣 1 컵"),
+            React.createElement("li", null, "버터 상추 2 컵"),
+            React.createElement("li", null, "옐로 스쿼시(Yellow Squash, 호박의 한 종류) 1개"),
+            React.createElement("li", null, "올리브 오일 1/2 컵"),
+            React.createElement("li", null, "마늘 3 쪽")
+        ),
+        React.createElement("section", { "className": "instructions" },
+            React.createElement("h2", null, "조리절차"),
+            React.createElement("p", null, "오븐을 350도로 예열한다."),
+            React.createElement("p", null,
+                "유리 베이킹 그릇에 올리브 오일을 두른다."),
+            React.createElement("p", null, "연어, 마늘, 잣을 그릇에 담는다."),
+            React.createElement("p", null, "오븐에서 15분간 익힌다."),
+            React.createElement("p", null, "옐로 스쿼시를 추가하고 다시 30분간 오븐에서 익힌다."),
+            React.createElement("p", null, "오븐에서 그릇을 꺼내서 15분간 식힌다음에 상추를 곁들여서 내놓는다.")
+        )
+    )
+
+    ReactDOM.render(dish, document.getElementById('react-container'))
+
+    console.log('dish element', dish)
+    
+    </script>
+</body>
+
+</html>
